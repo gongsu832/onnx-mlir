@@ -2,7 +2,6 @@
 
 from jenkins_common import *
 
-DOCKER_DEV_IMAGE_WORKDIR = "/workdir"
 ONNX_MLIR_SOURCE = "/workdir/onnx-mlir"
 ONNX_MLIR_HOME = "/workdir/onnx-mlir/build/Debug"
 RUN_ONNX_MODEL_PY = "RunONNXModel.py"

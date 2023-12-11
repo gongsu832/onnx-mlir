@@ -31,7 +31,6 @@ logging.basicConfig(
 MEMORY_IN_GB = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / (1024.0**3)
 NPROC = str(math.ceil(min(max(2, MEMORY_IN_GB / 8), os.cpu_count())))
 
-RETRY_LIMIT = 5
 READ_CHUNK_SIZE = 1024 * 1024
 BASE_BRANCH = "main"
 
@@ -240,13 +239,13 @@ def get_image_manifest_config(
     headers = {}
     headers["Accept"] = DOCKER_DIST_MANIFEST
     if access_token:
-        headers["Authorization"] = "Bearer " + access_token
+        headers_manifest["Authorization"] = "Bearer " + access_token
         auth = None
     else:
         auth = (login_name, login_token)
 
     manifest = requests.get(
-        url=url + "/manifests/" + image_tag, headers=headers, auth=auth
+        url=url + "/manifests/" + image_tag, headers=headers_manifest, auth=auth
     )
     manifest.raise_for_status()
 
