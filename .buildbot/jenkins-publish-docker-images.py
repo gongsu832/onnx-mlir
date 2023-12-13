@@ -247,9 +247,7 @@ def publish_arch_image(
                 logging.info("pushed %s [%s/%s]", image_arch, i, RETRY_LIMIT)
                 break
             except Exception as e:
-                logging.warning(
-                    "pushing %s [%s/%s] failed: %s", image_arch, i, RETRY_LIMIT, e
-                )
+                logging.exception(e)
                 continue
     # Remove arch image and release lock regardless of exception or not
     finally:
@@ -262,15 +260,6 @@ def publish_multiarch_manifest(
     host_name, user_name, image_name, manifest_tag, login_name, login_token
 ):
     """Publish multiarch manifest for an image."""
-
-    try:
-        access_token = (
-            get_access_token(
-                host_name, user_name, image_name, login_name, login_token, "pull,push"
-            )
-            if strtobool(docker_registry_token_access)
-            else None
-        )
 
     try:
         access_token = (
@@ -304,6 +293,7 @@ def publish_multiarch_manifest(
             m["platform"]["os"] = config.json()["os"]
 
             manifest_list.append(m)
+        logging.info("manifests: %s", manifest_list)
 
         # Make the REST call to PUT the multiarch manifest list.
         resp = put_image_manifest(
