@@ -112,7 +112,7 @@ Onnx-mlir currently supports ONNX operations targeting up to opset 22. Limitatio
 | **Log** |6 - * | | |
 | **LogSoftmax** |13 - * |Axis 0, 1, and default currently disabled due to changes in ONNX 1.8.1/Opset 13. |Temporally removed due to changes in onnx 1.8.1. |
 | **Loop** |6 - * |Input must have static shape. Does not support int4 and uint4. | |
-| **LpNormalization** |none | | | |
+| **LpNormalization** |1 - * | | | |
 | **LpPool** |none | | | |
 | **MatMul** |6 - * | | |
 | **MatMulInteger** |10 - * | | |
@@ -124,7 +124,7 @@ Onnx-mlir currently supports ONNX operations targeting up to opset 22. Limitatio
 | **MeanVarianceNormalization** |none | | | |
 | **MelWeightMatrix** |none | | | |
 | **Min** |6 - * |Does not support unsigned numbers. Only ppc64le and MacOS platforms support float16. | |
-| **Mish** |none | | | |
+| **Mish** |18 - * | | | |
 | **Mod** |10 - * |Support float and double only. Only ppc64le and MacOS platforms support float16. | |
 | **Momentum** |none | | | |
 | **Mul** |6 - * |Does not support short integers. | |
@@ -209,7 +209,7 @@ Onnx-mlir currently supports ONNX operations targeting up to opset 22. Limitatio
 | **Tan** |7 - * | | |
 | **Tanh** |6 - * | | |
 | **TfIdfVectorizer** |none | | | |
-| **ThresholdedRelu** |none | | | |
+| **ThresholdedRelu** |10 - * | | | |
 | **Tile** |6 - * | | |
 | **TopK** |10 - * |`K`, the number of top elements to retrieve, must have static shape. | |
 | **Transpose** |6 - * |Does not support int4 and uint4. | |
